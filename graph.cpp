@@ -1,6 +1,5 @@
 //#region INTRODUCTION
-/*
-#GRAPH DATA STRUCTURE
+/*#GRAPH DATA STRUCTURE
 G = [V, E] // Collection of vertices and edges
 ## Terminologies:
 - Indegree = number of edges can access this vertix
