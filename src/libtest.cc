@@ -2,6 +2,9 @@
 #include "../include/matrix.h"
 #include "../include/binary_search_tree.h"
 #include "../include/binary_tree.h"
+#include "../include/stack_array.h"
+#include "../include/stack_list.h"
+#include "../include/graph.h"
 
 int main(int argc, char **argv)
 {

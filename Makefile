@@ -6,6 +6,9 @@ INCLUDE=include
 INCLUDES=$(wildcard $(INCLUDE)/*.h)
 SRCS=$(wildcard $(SRC)/*.cpp)
 OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+mkfile_dir := $(dir $(mkfile_path))
+
 
 LIB=lib
 LIBNAME=libdatastructure.so
@@ -25,6 +28,7 @@ libtest:$(BINS)
 
 libdatastructure:
 	$(CXX) $(CXXFLAGS) -fPIC -shared -o $(LIB)/$(LIBNAME) $(SRCS) -lm
+libdatastructure:shared_library_available
 
 compile_tests: 
 	$(CXX) $(CXXFLAGS) $(SRC)/libtest.cc -o $(BINDIR)/libtest -I $(INCLUDE) -L $(LIB) -ldatastructure
@@ -35,3 +39,8 @@ clean:
 submit:
 	$(RM) $(SUBMITNAME)
 	zip $(SUBMITNAME) $(BINDIR)
+
+# Make shared library available at runtime
+shared_library_available:
+	export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$(mkfile_dir)$(LIB)/
+	echo $LD_LIBRARY_PATH
