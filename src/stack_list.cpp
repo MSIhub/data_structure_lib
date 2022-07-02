@@ -1,12 +1,4 @@
-#include <iostream>
-
-template <class T>
-class Node
-{
-public:
-    T data;
-    Node *next;
-};
+#include "../include/stack_list.h"
 
 template <class T>
 class stack_list
@@ -26,3 +18,8 @@ public:
             delete top;
     }
 };
+
+bool stack_list_test()
+{
+    return true;
+}

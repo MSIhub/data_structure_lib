@@ -10,7 +10,7 @@ OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 LIB=lib
 LIBNAME=libdatastructure.so
 BINDIR=bin
-BINS=$(LIB)/$(LIBNAME) compile_tests
+BINS=libdatastructure compile_tests
 SUBMITNAME=data_structure.zip
 
 all: $(BINS)
@@ -23,7 +23,7 @@ libtest: compile_tests
 libtest: clean
 libtest:$(BINS)
 
-$(LIB)/$(LIBNAME):
+libdatastructure:
 	$(CXX) $(CXXFLAGS) -fPIC -shared -o $(LIB)/$(LIBNAME) $(SRCS) -lm
 
 compile_tests: 

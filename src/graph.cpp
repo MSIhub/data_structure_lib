@@ -41,4 +41,9 @@ G = [V,E] , |V| = n , |E|=e
 3. Inverse Adjacency list//if indegree is important
  */
 //#endregion
-#include <iostream>
+#include "../include/graph.h"
+
+bool graph_test()
+{
+   return true;
+}

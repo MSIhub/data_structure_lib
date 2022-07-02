@@ -1,19 +1,4 @@
-#include <iostream>
-
-template <class T>
-class BST
-{
-public:
-    T m_value;
-    BST *m_left;
-    BST *m_right;
-
-    BST(T val_) : m_value(val_), m_left(nullptr), m_right(nullptr) {}
-
-    BST &insert(T item);
-    bool contains(T item);
-    void print() { printtree_helper(this, 0); }
-};
+#include "../include/binary_search_tree.h"
 
 template <class T>
 BST<T> &BST<T>::insert(T item)
@@ -92,15 +77,15 @@ void printtree_helper(BST<T> *tn, int level)
     printf("done\n");
 }
 
-// int main()
-// {
-//     BST<int>* bst = new BST<int>(19);
-//     bst->insert(15);
-//     bst->insert(25);
-//     bst->insert(19);
-//     bst->insert(4);
-//     bst->insert(87);
-//     bst->print();
-//     std::cout << std::boolalpha << bst->contains(23) << std::noboolalpha << std::endl;
-//     return 0;
-// }
+bool bst_test()
+{
+    BST<int> *bst = new BST<int>(19);
+    bst->insert(15);
+    bst->insert(25);
+    bst->insert(19);
+    bst->insert(4);
+    bst->insert(87);
+    bst->print();
+    std::cout << std::boolalpha << bst->contains(23) << std::noboolalpha << std::endl;
+    return true;
+}
