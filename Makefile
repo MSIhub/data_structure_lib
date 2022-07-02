@@ -1,46 +1,37 @@
 CXX=g++
-CPPFLAGS=-Wall -g
-CPPFLAGSREL=-O2 
-CPPSTD= c++2a
+CXXFLAGS= -g -Wall -std=c++2a
+SRC=src
+OBJ=obj
+INCLUDE=include
+INCLUDES=$(wildcard $(INCLUDE)/*.h)
+SRCS=$(wildcard $(SRC)/*.cpp)
+OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
-BUILD_DIR=./build
-RELEASE_DIR=$(BUILD_DIR)/release
-NODEADCODE_DIR=$(BUILD_DIR)/nodeadcode
+LIB=lib
+LIBNAME=libdatastructure.so
+BINDIR=bin
+BINS=$(LIB)/$(LIBNAME) compile_tests
+SUBMITNAME=data_structure.zip
 
-SRCS=$(wildcard *.cpp)
-OBJS=$(patsubst %.cpp, $(BUILD_DIR)/%.o, $(SRCS))
-OBJS_REL=$(patsubst %.cpp, $(RELEASE_DIR)/%.o, $(SRCS))
-OBJS_NDC=$(patsubst %.cpp, $(NODEADCODE_DIR)/%.o, $(SRCS))
+all: $(BINS)
 
+release: CXXFLAGS=-Wall -O2 -DNDEBUG -std=c++2a
+release: clean
+release: $(BINS)
 
-all: $(OBJS)
+libtest: compile_tests
+libtest: clean
+libtest:$(BINS)
 
-$(BUILD_DIR)/%.o: %.cpp $(BUILD_DIR)
-	$(CXX) -std=$(CPPSTD) $(CPPFLAGS) $< -o $@
+$(LIB)/$(LIBNAME):
+	$(CXX) $(CXXFLAGS) -fPIC -shared -o $(LIB)/$(LIBNAME) $(SRCS) -lm
 
-$(BUILD_DIR):
-	mkdir -p $@
-
-release: $(OBJS_REL)
-
-$(RELEASE_DIR)/%.o: %.cpp $(RELEASE_DIR)
-		$(CXX) -std=$(CPPSTD) $(CPPFLAGSREL) $< -o $@
-
-$(RELEASE_DIR):
-	mkdir -p $@
-
-
-nodeadcode: $(OBJS_NDC)
-
-$(NODEADCODE_DIR)/%.o: %.cpp $(NODEADCODE_DIR)
-		$(CXX) -std=$(CPPSTD) -ffunction-sections -fdata-sections $< -o $@
-		$(CXX) -std=$(CPPSTD) $< -o $@ -Wl,--gc-sections
-#removes unused sections of code
-
-$(NODEADCODE_DIR):
-	mkdir -p $@
+compile_tests: 
+	$(CXX) $(CXXFLAGS) $(SRC)/libtest.cc -o $(BINDIR)/libtest -I $(INCLUDE) -L $(LIB) -ldatastructure
 
 clean:
-	$(RM) $(BUILD_DIR)/*.o
-	$(RM) $(RELEASE_DIR)/*.o
-	$(RM) $(NODEADCODE_DIR)/*.o
+	$(RM) -r $(BINDIR)/* $(OBJ)/* $(LIB)/*
+
+submit:
+	$(RM) $(SUBMITNAME)
+	zip $(SUBMITNAME) $(BINDIR)

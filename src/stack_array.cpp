@@ -1,4 +1,6 @@
 #include <iostream>
+
+//#region
 template <class T>
 class stack_array
 {
@@ -78,22 +80,24 @@ std::ostream &operator<<(std::ostream &os, const stack_array<T> &st)
     return os;
 }
 
-int main()
-{
-    stack_array<double> st(5);
-    st.push(10.8);
-    st.push(20.8);
-    st.push(30.8);
-    st.push(40.8);
-    st.push(50.8);
-    std::cout << st;
-    st.pop();
-    st.pop();
-    std::cout << st;
-    std::cout << st.peek(0) << std::endl;
-    std::cout << st.peek(1) << std::endl;
-    std::cout << st.peek(2) << std::endl;
-    std::cout << st.stack_top() << std::endl;
+//#endregion
 
-    return 0;
-}
+// int main()
+// {
+//     stack_array<double> st(5);
+//     st.push(10.8);
+//     st.push(20.8);
+//     st.push(30.8);
+//     st.push(40.8);
+//     st.push(50.8);
+//     std::cout << st;
+//     st.pop();
+//     st.pop();
+//     std::cout << st;
+//     std::cout << st.peek(0) << std::endl;
+//     std::cout << st.peek(1) << std::endl;
+//     std::cout << st.peek(2) << std::endl;
+//     std::cout << st.stack_top() << std::endl;
+
+//     return 0;
+// }

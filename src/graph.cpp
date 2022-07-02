@@ -42,8 +42,3 @@ G = [V,E] , |V| = n , |E|=e
  */
 //#endregion
 #include <iostream>
-
-int main()
-{
-    return 0;
-}
