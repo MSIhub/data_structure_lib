@@ -8,12 +8,12 @@
 
 int main(int argc, char **argv)
 {
-    std::cout << "In main";
-    matrix_test();
-    bst_test();
-    binary_tree_test();
-    graph_test();
-    stack_array_test();
+    // matrix_test();
+    // bst_test();
+    // binary_tree_test();
+    // graph_test();
+    // stack_array_test();
 
+    // stack_list_test();
     return 0;
 }

@@ -43,4 +43,4 @@ submit:
 # Make shared library available at runtime
 shared_library_available:
 	export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$(mkfile_dir)$(LIB)/
-	echo $LD_LIBRARY_PATH
+	echo $$LD_LIBRARY_PATH
