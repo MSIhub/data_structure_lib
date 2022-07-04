@@ -9,7 +9,12 @@
 
 TEST(matrix_test, base_test)
 {
-    EXPECT_EQ( matrix_test(), true);
+    EXPECT_EQ(matrix_test(), true);
+}
+
+TEST(stack_list_test, base_test)
+{
+    EXPECT_EQ(stack_list_test(), true);
 }
 
 int main(int argc, char **argv)
